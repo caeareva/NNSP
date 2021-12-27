@@ -5,6 +5,7 @@ This repository describes the contents learned in NNSP by Harrison Kinsley and D
 The final deep learning projects code were modified to be run in command line rather than in Jupyter Notebook.
 Two deep learning models are included, a NNSP classifier model and a regression model, both learned in NNSP.
 
-The data to test, train and run the models was provided by the NNSP's authors.
+The data to test, train and run the models was provided by the NNSP's authors. 
+If interested in getting the book, (highly recommend it) https://nnfs.io/.
 
 Enjoy!!!
