@@ -1,7 +1,6 @@
-#!/usr/bin/env python3
 import numpy as np
-import Activation_Softmax
-import Loss_CategoricalCrossentropy
+import activation_softmax
+import loss_crossEntropy
 
 # Softmax classifier - combined Softmax activation
 # and cross-entropy loss for faster backward step
@@ -38,3 +37,8 @@ class Activation_Softmax_Loss_CategoricalCrossentropy():
         self.dinputs[range(samples), y_true] -= 1
         # Normalize gradient
         self.dinputs = self.dinputs / samples
+
+
+
+
+        

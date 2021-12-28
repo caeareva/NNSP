@@ -1,5 +1,5 @@
-#!/usr/bin/env python3
 import numpy as np
+
 
 # SGD optimizer
 class Optimizer_SGD:

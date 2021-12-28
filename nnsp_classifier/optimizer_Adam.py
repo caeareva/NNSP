@@ -1,5 +1,5 @@
-#!/usr/bin/env python3
 import numpy as np
+
 
 # Adam optimizer
 class Optimizer_Adam:

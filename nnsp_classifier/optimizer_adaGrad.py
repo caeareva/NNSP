@@ -1,5 +1,5 @@
-#!/usr/bin/env python3
 import numpy as np
+
 
 # Adagrad optimizer
 class Optimizer_Adagrad:

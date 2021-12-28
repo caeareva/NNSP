@@ -14,18 +14,16 @@
 #
 #####################################################################################################
 
-### Neral Networks from Scratch in Python by page 407
-
+### Neral Networks from Scratch in Python (by page 407)
 import numpy as np
 import nnfs
 from nnfs.datasets import spiral_data
 import matplotlib.pyplot as plt
-import layer_dense # Layer_Dense()
-import activation_relu # Activation_ReLU()
-import activation_sigmoid # Activation_Sigmoid
-#import loss_common
-import loss_binary_crossEntropy # Loss_BinaryCrossentropy()
-import optimizer_Adam # Optimizer_Adam()
+import layer_dense as ld # Layer_Dense()
+import activation_relu as ar # Activation_ReLU()
+import activation_sigmoid as asig # Activation_Sigmoid # import loss_common as lc
+import loss_binary_crossEntropy as lbce # Loss_BinaryCrossentropy()
+import optimizer_Adam as oa # Optimizer_Adam()
 
 nnfs.init()
 
@@ -38,24 +36,24 @@ X, y = spiral_data(samples=100, classes=2)
 y = y.reshape(-1, 1)
 
 # Create Dense layer with 2 input features and 64 output values 
-dense1 = Layer_Dense(2, 64, weight_regularizer_l2=5e-4, bias_regularizer_l2=5e-4)
+dense1 = ld.Layer_Dense(2, 64, weight_regularizer_l2=5e-4, bias_regularizer_l2=5e-4)
 
 # Create ReLU activation (to be used with Dense layer):
 
-activation1 = Activation_ReLU()
+activation1 = ar.Activation_ReLU()
 
 # Create second Dense layer with 64 input features (as we take output
 # of previous layer here) and 1 output value
-dense2 = Layer_Dense(64, 1)
+dense2 = ld.Layer_Dense(64, 1)
 
 # Create Sigmoid activation:
-activation2 = Activation_Sigmoid()
+activation2 = asig.Activation_Sigmoid()
 
 # Create loss function
-loss_function = Loss_BinaryCrossentropy()
+loss_function = lbce.Loss_BinaryCrossentropy()
 
 # Create optimizer
-optimizer = Optimizer_Adam(decay=5e-7) 
+optimizer = oa.Optimizer_Adam(decay=5e-7) 
 
 # Train in loop
 for epoch in range(10001):

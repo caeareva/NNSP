@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 import numpy as np
 
 # Common loss class
@@ -32,4 +31,17 @@ class Loss:
                                    np.sum(layer.biases * \
                                           layer.biases)
         return regularization_loss
+
+    # Calculates the data and regularization losses 
+    # given model output and ground truth values 
+    def calculate(self, output, y):
+
+        # Calculate sample losses
+        sample_losses = self.forward(output, y)
+
+        # Calculate mean loss
+        data_loss = np.mean(sample_losses)
+        
+        # Return loss
+        return data_loss
 
