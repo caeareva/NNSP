@@ -224,9 +224,3 @@ plt.figure(figsize=(figureWidth, figureHeight))
 plt.plot(X_test, y_test)
 plt.plot(X_test, activation3.output) 
 plt.savefig("/Users/carevalo/Desktop/nnsp_regression/nnsp_regression_line.png", dpi=600)
-
-
-
-
-
-
