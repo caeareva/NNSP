@@ -37,8 +37,3 @@ class Activation_Softmax_Loss_CategoricalCrossentropy():
         self.dinputs[range(samples), y_true] -= 1
         # Normalize gradient
         self.dinputs = self.dinputs / samples
-
-
-
-
-        
