@@ -1,6 +1,5 @@
 import numpy as np
 
-
 # Adagrad optimizer
 class Optimizer_Adagrad:
     
@@ -46,5 +45,3 @@ class Optimizer_Adagrad:
 
 
     
-
-
