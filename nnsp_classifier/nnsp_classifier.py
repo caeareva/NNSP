@@ -15,7 +15,9 @@
 #####################################################################################################
 
 ### Neral Networks from Scratch in Python (by page 407)
+
 import numpy as np
+import pandas as pd
 import nnfs
 from nnfs.datasets import spiral_data
 import matplotlib.pyplot as plt
@@ -55,8 +57,19 @@ loss_function = lbce.Loss_BinaryCrossentropy()
 # Create optimizer
 optimizer = oa.Optimizer_Adam(decay=5e-7) 
 
+
+# Create parameters in empty lists
+temp_df = pd.DataFrame()
+epoch_list = []
+acc_list = []
+loss_list = []
+dataloss_list = []
+reg_loss = []
+lr_list = []
+
 # Train in loop
 for epoch in range(10001):
+    epoch_list.append(epoch)
     # Perform a forward pass of our training data through this layer
     dense1.forward(X)
     
@@ -75,30 +88,36 @@ for epoch in range(10001):
     
     # Calculate the data loss
     data_loss = loss_function.calculate(activation2.output, y)
-    
+    dataloss_list.append(data_loss)
+
     # Calculate regularization penalty
     regularization_loss = \
         loss_function.regularization_loss(dense1) + \
         loss_function.regularization_loss(dense2)
+    reg_loss.append(regularization_loss)
     
     # Calculate overall loss
     loss = data_loss + regularization_loss
-    
+    loss_list.append(loss)
+
     # Calculate accuracy from output of activation2 and targets
     # Part in the brackets returns a binary mask - array consisting
     # of True/False values, multiplying it by 1 changes it into array
     # of 1s and 0s
     predictions = (activation2.output > 0.5) * 1
     accuracy = np.mean(predictions == y)
+    acc_list.append(accuracy)
+    lr_list.append(optimizer.current_learning_rate)
     
-    if not epoch % 100: 
+    # Print parameters
+    if not epoch % 100:    
         print(f'epoch: {epoch}, ' +
               f'acc: {accuracy:.3f}, ' +
               f'loss: {loss:.3f} (' +
               f'data_loss: {data_loss:.3f}, ' +
               f'reg_loss: {regularization_loss:.3f}), ' +
               f'lr: {optimizer.current_learning_rate}')
-        
+
     # Backward pass
     loss_function.backward(activation2.output, y)
     activation2.backward(loss_function.dinputs)
@@ -111,6 +130,61 @@ for epoch in range(10001):
     optimizer.update_params(dense1)
     optimizer.update_params(dense2)
     optimizer.post_update_params()
+
+
+# Add parameters as columns and save dataframe as tsv
+temp_df["epoch"] =  epoch_list
+temp_df["accuracy"] = acc_list
+temp_df["loss"] = loss_list
+temp_df["data_loss"] = data_loss
+temp_df["regularization_loss"] = reg_loss
+temp_df["learning_rate"] = lr_list
+temp_df.to_csv(r'/Users/carevalo/Desktop/nnsp_classifier/training_parameters.tsv', \
+    sep='\t', encoding='utf-8', header=True)
+
+# Visualize training parameters above
+
+# Define figure dimentions
+figureHeight=5
+figureWidth=4
+plt.figure(figsize=(figureWidth, figureHeight)) 
+
+# Define panel dimentions
+panelHeight=1
+panelWidth=2
+relativePanelWidth = panelWidth/figureWidth
+relativePanelHeight = panelHeight/figureHeight
+
+# Make figure panels
+loss_fig = plt.axes([2/7, 0.7, relativePanelWidth, relativePanelHeight])
+acc_fig = plt.axes([2/7, 0.4, relativePanelWidth, relativePanelHeight])
+lr_fig = plt.axes([2/7, 0.1, relativePanelWidth, relativePanelHeight])
+
+# Summarize history for Loss
+loss_fig.plot(epoch_list, loss_list, \
+    linestyle="solid", color="#1770AB")
+loss_fig.set_title("Loss")
+loss_fig.set_xticks([i for i in range(0, 11000, 2500)])
+loss_fig.set_xticklabels([])
+
+# Summarize history for Accuracy
+acc_fig.plot(epoch_list, acc_list, \
+    linestyle="solid", color="#FF0000")
+acc_fig.set_title("Accuracy")
+acc_fig.set_xticks([i for i in range(0, 11000, 2500)])
+acc_fig.set_xticklabels([])
+
+# Summarize history for Learning rate
+#lr_temp = [f"{n:.3f}" for n in lr_list] # 1 sig figure
+lr_fig.plot(epoch_list, lr_list, \
+    linestyle="solid", color="#00CD6C")
+lr_fig.set_title("Learning rate")
+lr_fig.set_xlabel("Epoch")
+#lr_fig.set_ylim(0, max(lr_temp))
+lr_fig.set_xticks([i for i in range(0, 11000, 2500)])
+
+# Save figures
+plt.savefig("/Users/carevalo/Desktop/nnsp_classifier/training_parameters.png", dpi=600)
 
 # Validate the model
 
@@ -148,4 +222,10 @@ predictions = (activation2.output > 0.5)*1
 accuracy = np.mean(predictions == y_test)
 
 print(f'validation, acc: {accuracy:.3f}, loss: {loss:.3f}')
+
+
+# Improvements:
+# Modify program to output a tsv file with columns as epoch, accuracy, 
+# loss, data_loss, reg_loss and lr
+# Add a fuction to plot values above and output png images of these results.
 
