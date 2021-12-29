@@ -1,4 +1,3 @@
-# NNSPy
 ## Neural Networks from Scratch in Python (NNSP)
 
 This repository describes the contents learned in NNSP by Harrison Kinsley and Daniel Kukieła. 
