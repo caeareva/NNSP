@@ -1,6 +1,5 @@
 import numpy as np
 
-
 # Common loss class
 class Loss:
 
