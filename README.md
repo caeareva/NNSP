@@ -5,7 +5,7 @@ The final deep learning projects are provided to be run in both command line and
 Two deep learning models are included, a NNSP classifier model and a regression model.
 
 The data to test, train and run the models was provided by the NNSP's authors. 
-If interested in getting the book, (highly recommend it if you are new to machine learning!) URL: https://nnfs.io/.
+If interested in getting the book (highly recommend it if you are new to machine learning!), URL: https://nnfs.io/.
 
 Enjoy!!!
 
