@@ -1,6 +1,5 @@
 import numpy as np
 
-
 # ReLU activation
 class Activation_ReLU:
     
@@ -19,5 +18,3 @@ class Activation_ReLU:
         
         # Zero gradient where input values were negative
         self.dinputs[self.inputs <= 0] = 0      
-
-
