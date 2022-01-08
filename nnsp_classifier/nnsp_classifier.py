@@ -131,7 +131,6 @@ for epoch in range(10001):
     optimizer.update_params(dense2)
     optimizer.post_update_params()
 
-
 # Add parameters as columns and save dataframe as tsv
 temp_df["epoch"] =  epoch_list
 temp_df["accuracy"] = acc_list
@@ -183,7 +182,7 @@ lr_fig.set_xlabel("Epoch")
 #lr_fig.set_ylim(0, max(lr_temp))
 lr_fig.set_xticks([i for i in range(0, 11000, 2500)])
 
-# Save figures
+# Save figure
 plt.savefig("/Users/carevalo/Desktop/nnsp_classifier/training_parameters.png", dpi=600)
 
 # Validate the model
@@ -221,11 +220,5 @@ loss = loss_function.calculate(activation2.output, y_test)
 predictions = (activation2.output > 0.5)*1
 accuracy = np.mean(predictions == y_test)
 
+# Print validation parameters
 print(f'validation, acc: {accuracy:.3f}, loss: {loss:.3f}')
-
-
-# Improvements:
-# Modify program to output a tsv file with columns as epoch, accuracy, 
-# loss, data_loss, reg_loss and lr
-# Add a fuction to plot values above and output png images of these results.
-
