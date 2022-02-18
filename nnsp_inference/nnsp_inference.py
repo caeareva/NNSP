@@ -1,5 +1,4 @@
 
-# Pages 633-659
 # Program execution
 # python /Users/carevalo/Desktop/nnsp_inference/nnsp_inference.py
 
