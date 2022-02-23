@@ -9,23 +9,19 @@ from zipfile import ZipFile
 
 nnfs.init()
 
-# Download compressed data using urllib
+######################################################################
+
+# Download compressed data using urllib and process it
 URL = "https://nnfs.io/datasets/fashion_mnist_images.zip"
 FILE = "fashion_mnist_images.zip"
 FOLDER = "fashion_mnist_images"
 
 if not os.path.isfile(FILE):
-    # print(f"Downloading {URL} and saving as {FILE}...") 
     urllib.request.urlretrieve(URL, FILE)
-# Unzip data
-# print("Unzipping images...")
+
 with ZipFile(FILE) as zip_images:
     zip_images.extractall(FOLDER)
-# print("Done!")
 
-
-
-# Iterate over all samples
 # Scan all the directories and create a list of labels
 labels = os.listdir('fashion_mnist_images/train')
 
@@ -47,8 +43,9 @@ for label in labels:
     # And append it and a label to the lists
     X.append(image)
     y.append(label)
-
-
+ 
+######################################################################
+    
 
 # Dense layer
 class Layer_Dense:
