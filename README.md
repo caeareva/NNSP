@@ -1,7 +1,7 @@
 ## Neural Networks from Scratch in Python (NNSP)
 
 Repository describes the conceps learned from NNSP by Harrison Kinsley and Daniel Kukieła. 
-The final deep learning projects are provided to be run in both command line and in Jupyter Notebook.
+The final deep learning projects are provided to be run in both command line and Jupyter Notebook.
 Three deep learning models are included, a NNSP classifier model, a regression model and an prediction/inference 
 model.
 
