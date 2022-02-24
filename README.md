@@ -2,7 +2,7 @@
 
 Repository describes the conceps learned from NNSP by Harrison Kinsley and Daniel Kukieła. 
 The final deep learning projects are provided to be run in both command line and Jupyter Notebook.
-Three deep learning models are included, a NNSP classifier model, a regression model and a prediction/inference 
+Three deep learning models are included, a NNSP classifier model, a regression model, and a prediction/inference 
 model.
 
 The data to test, train and run the models was provided by the NNSP's authors. The inference model uses the 
