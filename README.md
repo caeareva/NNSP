@@ -6,7 +6,7 @@ Three deep learning models are included, a NNSP classifier model, a regression m
 model.
 
 The data to test, train and run the models was provided by the NNSP's authors. The inference model uses the 
-Fashion MNIST dataset <a href="https://github.com/zalandoresearch/fashion-mnist">(Data)</a>. The Fashion MNIST dataset is a 
+Fashion MNIST dataset <a href="https://github.com/zalandoresearch/fashion-mnist">(Download)</a>. The Fashion MNIST dataset is a 
 collection of 60,000 training samples and 10,000 testing samples of 28x28 images of 10 various clothing items
 like shoes, boots, shirts, bags, and more.
 
